@@ -1,14 +1,15 @@
-const { readFileSync } = require('fs');
+const { readFile } = require('fs');
+const { promisify } = require('util');
 
 let paths = process.argv.slice(2);
 main(paths);
 
-function main(paths) {
+async function main(paths) {
     // print the welcome message
     printMessage();
 
     // Compute the number of lines in each file
-    let data = getLineCountInfo(paths);
+    let data = await getLineCountInfo(paths);
     console.log("Total Line Count: " + data.totalLineCount);
 }
 
@@ -22,8 +23,13 @@ function printMessage() {
 /**
  * @param {string[]} paths
 */
-function getLineCountInfo(paths) {
-    let lineCounts = paths.map(path => ({ path, count: getLinesLength(readFileSync(path, 'utf8')) }));
+async function getLineCountInfo(paths) {
+    let lineCounts = await Promise.all(
+        paths.map(async path => ({
+            path,
+            count: getLinesLength(await promisify(readFile)(path, 'utf8')) }
+        ))
+    );
     return {
         totalLineCount: lineCounts.reduce((acc, { count }) => acc + count, 0),
         lineCounts,
