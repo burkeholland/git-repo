@@ -1,21 +1,22 @@
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 
-let paths = process.argv.slice(2);
+const paths = process.argv.slice(2);
 main(paths);
 
 function main(paths) {
     // print the welcome message
-    printMessage();
+    printWelcome();
 
     // Compute the number of lines in each file
-    let data = getLineCountInfo(paths);
+    const data = getLineCountInfo(paths);
     console.log("Total Line Count: " + data.totalLineCount);
+    writeFileSync('output.json', JSON.stringify(data, null, 2));
 }
 
 /**
  * Prints the welcome message
 */
-function printMessage() {
+function printWelcome() {
     console.log("Welcome To Line Counter");
 }
 
@@ -23,7 +24,7 @@ function printMessage() {
  * @param {string[]} paths
 */
 function getLineCountInfo(paths) {
-    let lineCounts = paths.map(path => ({ path, count: getLinesLength(readFileSync(path, 'utf8')) }));
+    const lineCounts = paths.map(path => ({ path, count: getLineCount(readFileSync(path, 'utf8')) }));
     return {
         totalLineCount: lineCounts.reduce((acc, { count }) => acc + count, 0),
         lineCounts,
@@ -33,6 +34,6 @@ function getLineCountInfo(paths) {
 /**
  * @param {string} str 
  */
-function getLinesLength(str) {
+function getLineCount(str) {
     return str.split('\n').length;
 }
