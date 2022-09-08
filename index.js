@@ -6,7 +6,7 @@ main(paths);
 
 async function main(paths) {
     // print the welcome message
-    printMessage();
+    printHeader();
 
     // Compute the number of lines in each file
     let data = await getLineCountInfo(paths);
@@ -16,7 +16,7 @@ async function main(paths) {
 /**
  * Prints the welcome message
 */
-function printMessage() {
+function printHeader() {
     console.log("Welcome To Line Counter");
 }
 
