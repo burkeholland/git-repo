@@ -1,5 +1,5 @@
-const { readFile, writeFileSync } = require('fs');
-const { promisify } = require('util');
+const { readFile, writeFileSync } = require("fs");
+const { promisify } = require("util");
 
 const paths = process.argv.slice(2);
 main(paths); // some comment
