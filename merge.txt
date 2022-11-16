@@ -1,6 +1,6 @@
-Not changed anywhere.
+Not changed anywhere
 A==C
 A==B
 A_is_different
 All_are_different
-White space in B.
+White space in B
