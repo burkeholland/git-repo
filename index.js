@@ -1,4 +1,4 @@
-const { readFile, writeFileSync } = require("fs");
+const { readFile, writeFileSync } = require('fs');
 const { promisify } = require("util");
 
 const paths = process.argv.slice(2);
@@ -19,6 +19,13 @@ async function main(paths) {
 */
 function printWelcome() {
     console.log("Welcome To Line Counter");
+}
+
+/*
+ * Gather results from all files
+*/
+function gatherResults(data, paths, lineCounts) {
+    // Gather the results
 }
 
 /**
