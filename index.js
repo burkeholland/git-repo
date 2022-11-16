@@ -1,5 +1,5 @@
 const { readFile, writeFileSync } = require("fs");
-const { promisify } = require("util");
+const { promisify } = require('util');
 
 const paths = process.argv.slice(2);
 main(paths); // some comment
@@ -24,7 +24,7 @@ function printWelcome() {
 /*
  * Gather results from all files
 */
-function gatherResults(data, paths, lineCounts) {
+function gatherResults(paths, lineCounts) {
     // Gather the results
 }
 
