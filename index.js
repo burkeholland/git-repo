@@ -30,6 +30,8 @@ function sampleMethod(param1, param2, param3) {
 
     console.log("All params are now equal");
     console.log(`param1: ${param1}, param2: ${param2}, param3: ${param3}`);
+
+    // end of method
 }
 
 /**
